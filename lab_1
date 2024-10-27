@@ -1,0 +1,280 @@
+#https://colab.research.google.com/drive/1p9j6c0V-dOUfZV65YsjxYxSbIbotosio#scrollTo=b9FLmkAfpnqT&line=270&uniqifier=1
+
+print("1. Базовые типы переменных")
+int_variable = 1  # int
+assert isinstance(int_variable, int)
+
+float_variable = 1.0  # float
+assert isinstance(float_variable, float)
+
+string_variable = "str"  # string
+assert isinstance(string_variable, str)
+
+bool_variable = True  # bool
+assert isinstance(bool_variable, bool)
+
+list_variable = [1, 2, 3]  # list
+assert isinstance(list_variable, list)
+
+tuple_variable = (1, "2sd") # tuple
+assert isinstance(tuple_variable, tuple)
+
+set_variable = {3, 1, 2} # set
+assert isinstance(set_variable, set)
+
+dict_variable = {1:"a", 2:"b"}  # dict
+assert isinstance(dict_variable, dict)
+
+print("2.1 Различные функции")
+def difference_of_two_numbers(first, second):
+    return first - second
+
+
+assert difference_of_two_numbers(2, 1) == 1
+assert difference_of_two_numbers(4, 1) == 3
+assert difference_of_two_numbers(10, 0) == 10
+assert difference_of_two_numbers(-5, -6) == 1
+
+def condition_function(x):
+  if(x <= 0) : return x * 2
+  if(x <= 10) : return x * 3
+  return x/10
+
+assert condition_function(0) == 0
+assert condition_function(-1) == -2
+assert condition_function(1) == 3
+assert condition_function(10) == 30
+assert condition_function(11) == 1.1
+assert condition_function(20) == 2
+
+def calculator(x1, o, x2):
+  if(o == "-") : return x1 - x2
+  if(o == "*") : return x1 * x2
+  if(o == "/") : return x1 / x2
+  return x1 + x2
+
+
+assert calculator(1, "+", 2) == 3
+assert calculator(3, "-", 1) == 2
+assert calculator(4, "*", 3) == 12
+assert calculator(2, "/", 2) == 1
+
+def number_of_unique_elements(input_list):
+  mp = dict()
+  ans = 0 
+  for item in input_list:
+    mp[item] = 0
+  for item in input_list:
+    mp[item] += 1
+    if mp[item] == 1: ans += 1
+  return ans
+
+assert number_of_unique_elements([1, 2, 3]) == 3
+assert number_of_unique_elements([1] * 93) == 1
+assert number_of_unique_elements(list(range(1000))) == 1000
+
+def counter(input_list):
+  mp = dict()
+  ans = 0 
+  for item in input_list:
+    mp[item] = 0
+  for item in input_list:
+    mp[item] += 1
+    if mp[item] == 1: ans += 1
+  return mp
+
+assert counter([1, 1, 1, 2, 3]) == {1: 3, 2: 1, 3: 1}
+assert counter([1] * 1000) == {1: 1000}
+assert counter([1, 3, 5] * 100) == {1: 100, 3: 100, 5: 100}
+
+def multiply_nums(st):
+  strs = st.split(',')
+  ans = 1
+  for to in strs:
+    ans *= int(to)
+  return ans
+
+assert multiply_nums("2, 3") == 6
+assert multiply_nums("1, 1, 1, 1, 1, 1, 1") == 1
+assert multiply_nums("345, 4576, 794, 325, 0") == 0
+
+import math
+def custom_function(x):
+  return math.sin(x) * math.cos(x)
+
+assert round(custom_function(1), 3) == 0.455
+assert round(custom_function(1.5), 3) == 0.071
+assert round(custom_function(2), 3) == -0.378
+assert custom_function(0) == 0
+
+def custom_function_1(x, m):
+    ans = 1
+    n = 1
+    while(m >= n):
+      ans *= ((n + 2)**x + math.log(x))/(x*x + 4*n)
+      n += 1
+    return ans
+
+assert round(custom_function_1(2, 3), 3) == 2.707
+assert round(custom_function_1(3, 2), 3) == 8.277
+assert round(custom_function_1(3, 3), 3) == 49.7
+
+print("2.2 Задачки на написание функций")
+# Ваша задача здесь написать функцию time_converter (именно такое название)
+# она должна возвращать значения в виде строки 'hours minutes'
+def time_converter(x) :
+  h = int(((x - x % 60) / 60) % 24)
+  min = x % 60
+  st = str(h) + " " + str(min)
+  return st
+
+assert time_converter(2782) == '22 22'
+assert time_converter(4733) == '6 53'
+assert time_converter(1766) == '5 26'
+assert time_converter(3865) == '16 25'
+assert time_converter(4628) == '5 8'
+assert time_converter(4353) == '0 33'
+assert time_converter(268) == '4 28'
+assert time_converter(4373) == '0 53'
+assert time_converter(2722) == '21 22'
+assert time_converter(1531) == '1 31'
+
+# Написать функцию min_of_three_values, принимает на вход 3 аргумента 
+def min_of_three_values(a,b,c):
+  return min(a,b,c)
+assert min_of_three_values(1, 2, 3) == 1
+assert min_of_three_values(1, 1, 9) == 1
+assert min_of_three_values(18, 7, 11) == 7
+assert min_of_three_values(2, 10, 10) == 2
+assert min_of_three_values(17, 14, 17) == 14
+assert min_of_three_values(9, 2, 10) == 2
+assert min_of_three_values(7, 4, 7) == 4
+assert min_of_three_values(0, 8, 3) == 0
+assert min_of_three_values(8, 10, 6) == 6
+assert min_of_three_values(1, 4, 8) == 1
+
+# Функция remove_symbol принимает два аргумента -- строку и символ, которые необходимо удалить
+def remove_symbol(st,ch):
+  st = st.replace(ch,"")
+  return st
+
+assert remove_symbol('aaaaaaaa', 'a') == ''
+assert remove_symbol('abababa', 'b') == 'aaaa'
+assert remove_symbol('12341234', '3') == '124124'
+
+
+def remove_each_third_sym(st):
+  ans = ""
+  i = 0
+  for to in st:
+    i += 1
+    if(i % 3 == 0) : continue
+    ans += to 
+  return ans
+
+assert remove_each_third_sym('abcdef') == 'abde'
+assert remove_each_third_sym('sdfasdfasdfsfa') == 'sdasfadffa'
+assert remove_each_third_sym('123456789') == '124578'
+assert remove_each_third_sym('987654321') == '986532'
+
+def find_max(l) :
+  max = 0
+  n = 0
+  i = 0
+  for to in l:
+    if(to > max) : 
+      max = to
+      n = i
+    i += 1
+  return (max,n)
+
+assert find_max([1, 2, 3, 4, 5]) == (5, 4)
+assert find_max([5, 4, 3, 2, 1]) == (5, 0)
+assert find_max([96, 82, 72, 48, 93, 88, 79]) == (96, 0)
+assert find_max([49, 75, 65, 65, 65, 18]) == (75, 1)
+assert find_max([69, 16, 64, 54, 36, 70, 89, 29]) == (89, 6)
+assert find_max([17, 80, 27, 36, 21, 85, 63, 27]) == (85, 5)
+assert find_max([76, 27, 73, 65, 52]) == (76, 0)
+assert find_max([33, 26, 69, 40, 93]) == (93, 4)
+assert find_max([87, 5, 95, 52, 21, 76, 22]) == (95, 2)
+assert find_max([75, 18, 89, 99, 70]) == (99, 3)
+
+# функция append_to_list принимает два значения -- лист и значение, которое необходимо вставить в конец листа
+# функция возвращает обновленный лист
+def append_to_list(l,x):
+  l.append(x)
+  return l
+
+assert append_to_list([1, 2], 3) == [1, 2, 3]
+assert append_to_list([1, 2], None) == [1, 2, None]
+assert append_to_list([1, 's'], True) == [1, 's', True]
+
+# функция number_unique_elements принимает на вход лист
+# на выходе одно число -- количество уникальных элементов
+def number_unique_elements(l):
+  mp = dict()
+  ans = 0 
+  for item in l:
+    mp[item] = 0
+  for item in l:
+    mp[item] += 1
+    if mp[item] == 1: ans += 1
+  return ans
+
+assert number_unique_elements([1, 2, 3]) == 3
+assert number_unique_elements([1, 2, 1]) == 2
+assert number_unique_elements([1, 1, 1, 1]) == 1
+assert number_unique_elements([1, 2, 1, 2]) == 2
+
+print("3.Классы")
+class Vehicle:
+
+    def __init__(self, speed, m) :
+      self.max_speed = speed
+      self.mileage = m
+
+veh1 = Vehicle(100, 50)
+assert (veh1.max_speed, veh1.mileage) == (100, 50)
+
+veh2 = Vehicle(200, 3)
+assert (veh2.max_speed, veh2.mileage) == (200, 3)
+
+class Truck(Vehicle):
+  pass
+
+
+truck1 = Truck(50, 1000)
+assert (truck1.max_speed, truck1.mileage) == (50, 1000)
+
+truck2 = Truck(43, 235)
+assert (truck2.max_speed, truck2.mileage) == (43, 235)
+
+class MyList:
+    def __init__(self,l):
+        self.myList = l
+        pass
+    
+    def return_sum(self):
+        ans = 0
+        for to in self.myList:
+          ans += to
+        return ans
+
+    def make_reverse(self):
+        l = self.myList[:]
+        l.reverse()
+        return l
+    
+    def make_slice(self, start, stop):
+        return self.myList[start:stop]
+    
+    
+a = MyList([1, 2, 3, 4])
+assert a.return_sum() == 10
+assert a.make_reverse() == [4, 3, 2, 1]
+assert a.make_slice(0, 2) == [1, 2]
+
+b = MyList([5, 6, 6, 5])
+assert b.return_sum() == 22
+assert b.make_reverse() == [5, 6, 6, 5]
+assert b.make_slice(1, 2) == [6]
